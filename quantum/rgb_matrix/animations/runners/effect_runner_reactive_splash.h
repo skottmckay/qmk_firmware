@@ -3,25 +3,7 @@
 #ifdef RGB_MATRIX_KEYREACTIVE_ENABLED
 
 #include <time.h>
-
-static const RGB daily_colors[7] = {
-    {RGB_ORANGE}, // Sunday
-    {0x00, 0x20, 0xFF}, // Monday
-    {0x00, 0x50, 0xFF}, // Tuesday
-    {0x00, 0x80, 0xFF}, // Wednesday 
-    {0x00, 0xA0, 0xFF}, // Thursday 
-    {0x00, 0xD0, 0xFF}, // Friday
-    {RGB_ORANGE}  // Saturday
-};
-
-RGB get_todays_color(void) {
-    time_t now = time(NULL);
-    struct tm *tm_now = localtime(&now);
-
-    uint8_t day = tm_now->tm_wday; // Sunday = 0, Monday = 1, ..., Saturday = 6
-
-    return daily_colors[day];
-}
+#include "color.h"
 
 typedef HSV (*reactive_splash_f)(HSV hsv, int16_t dx, int16_t dy, uint8_t dist, uint16_t tick);
 
@@ -29,7 +11,7 @@ bool effect_runner_reactive_splash(uint8_t start, effect_params_t* params, react
     RGB_MATRIX_USE_LIMITS(led_min, led_max);
 
     uint8_t count = g_last_hit_tracker.count;
-    RGB default_color = get_todays_color();
+    // RGB default_color = get_todays_colour();
 
     for (uint8_t i = led_min; i < led_max; i++) {
         RGB_MATRIX_TEST_LED_FLAGS();
@@ -44,10 +26,11 @@ bool effect_runner_reactive_splash(uint8_t start, effect_params_t* params, react
         }
         hsv.v   = scale8(hsv.v, rgb_matrix_config.hsv.v);
         RGB rgb = rgb_matrix_hsv_to_rgb(hsv);
-        if (rgb.r != 0 || rgb.b != 0 || rgb.g != 0) {
-            rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
+        if (rgb.r == 0 && rgb.b == 0 && rgb.g == 0) {
+            // If the color is black, set it to the default color
+            rgb_matrix_set_color(i, RGB_TEAL);
         } else {
-            rgb_matrix_set_color(i, default_color.r, default_color.g, default_color.b);
+            rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
         }
     }
     return rgb_matrix_check_finished_leds(led_max);
