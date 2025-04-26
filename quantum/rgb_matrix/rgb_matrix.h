@@ -77,10 +77,10 @@
 #endif
 
 #ifndef RGB_MATRIX_DEFAULT_MODE
-#    ifdef ENABLE_RGB_MATRIX_CYCLE_LEFT_RIGHT
-#        define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_CYCLE_LEFT_RIGHT
+#    ifdef ENABLE_RGB_MATRIX_SPLASH
+#        define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_SPLASH
 #    else
-// fallback to solid colors if RGB_MATRIX_CYCLE_LEFT_RIGHT is disabled in userspace
+// fallback to solid colors if RGB_MATRIX_SPLASH is disabled in userspace
 #        define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_SOLID_COLOR
 #    endif
 #endif
