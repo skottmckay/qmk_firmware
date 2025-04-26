@@ -35,7 +35,9 @@
         { 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28 }
 
 /* Set to infinit, which is use in USB mode by default */
-#    define RGB_MATRIX_TIMEOUT RGB_MATRIX_TIMEOUT_INFINITE
+//#    define RGB_MATRIX_TIMEOUT RGB_MATRIX_TIMEOUT_INFINITE
+// override to 15  mins
+#    define RGB_MATRIX_TIMEOUT (15 * 60 * 1000)
 
 /* Allow shutdown of led driver to save power */
 #    define RGB_MATRIX_DRIVER_SHUTDOWN_ENABLE

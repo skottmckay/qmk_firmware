@@ -31,3 +31,8 @@ Changes:
 
 Updated quantum/rgb_matrix/animations/runners/effect_runner_reactive_splash.h to set the colour to blue after the effect ran.
 If you want to change that colour you have to rebuild and reflash.
+
+See https://github.com/skottmckay/qmk_firmware/commit/61839521bf8bd899894d081fa5746d4618eea5de
+
+Updated timeout so LEDs turn off after 15 mins of activity in keyboards/keychron/q6_max/ansi_encoder/config.h
+#    define RGB_MATRIX_TIMEOUT (15 * 60 * 1000)
