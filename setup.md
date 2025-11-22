@@ -3,7 +3,8 @@ I used WSL for this
 Install qmk as per https://docs.qmk.fm/newbs
   except use fork with this command to pick the branch with the Q6 max firmware
 
-`qmk setup -H ~/qmk_firmware -b wireless_playground skottmckay/qmk_firmwareqmk compile -kb keychron/q6_max/ansi -km via`
+`qmk setup -H ~/qmk_firmware -b wireless_playground skottmckay/qmk_firmware`
+
 
 This _should_ run `git submodule update --init --recursive` but can do so manually to be sure.
 

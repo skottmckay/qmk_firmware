@@ -2,7 +2,6 @@
 #define RGB_MATRIX_KEYREACTIVE_ENABLED
 #ifdef RGB_MATRIX_KEYREACTIVE_ENABLED
 
-#include <time.h>
 #include "color.h"
 
 typedef HSV (*reactive_splash_f)(HSV hsv, int16_t dx, int16_t dy, uint8_t dist, uint16_t tick);
@@ -11,11 +10,10 @@ bool effect_runner_reactive_splash(uint8_t start, effect_params_t* params, react
     RGB_MATRIX_USE_LIMITS(led_min, led_max);
 
     uint8_t count = g_last_hit_tracker.count;
-    // RGB default_color = get_todays_colour();
 
     for (uint8_t i = led_min; i < led_max; i++) {
         RGB_MATRIX_TEST_LED_FLAGS();
-        HSV hsv = rgb_matrix_config.hsv;  // default colors - which is black
+        HSV hsv = rgb_matrix_config.hsv;  // default color, which is black
         hsv.v   = 0;
         for (uint8_t j = start; j < count; j++) {
             int16_t  dx   = g_led_config.point[i].x - g_last_hit_tracker.x[j];
@@ -28,9 +26,9 @@ bool effect_runner_reactive_splash(uint8_t start, effect_params_t* params, react
         RGB rgb = rgb_matrix_hsv_to_rgb(hsv);
         if (rgb.r == 0 && rgb.b == 0 && rgb.g == 0) {
             // If the color is black, set it to the default color
-            rgb_matrix_set_color(params->region, i, RGB_TEAL);
+            rgb_matrix_region_set_color(params->region, i, RGB_TEAL);
         } else {
-            rgb_matrix_set_color(params->region, i, rgb.r, rgb.g, rgb.b);
+            rgb_matrix_region_set_color(params->region, i, rgb.r, rgb.g, rgb.b);
         }
     }
     return rgb_matrix_check_finished_leds(led_max);
