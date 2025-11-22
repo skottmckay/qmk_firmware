@@ -28,9 +28,9 @@ bool effect_runner_reactive_splash(uint8_t start, effect_params_t* params, react
         RGB rgb = rgb_matrix_hsv_to_rgb(hsv);
         if (rgb.r == 0 && rgb.b == 0 && rgb.g == 0) {
             // If the color is black, set it to the default color
-            rgb_matrix_set_color(i, RGB_TEAL);
+            rgb_matrix_set_color(params->region, i, RGB_TEAL);
         } else {
-            rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
+            rgb_matrix_set_color(params->region, i, rgb.r, rgb.g, rgb.b);
         }
     }
     return rgb_matrix_check_finished_leds(led_max);
