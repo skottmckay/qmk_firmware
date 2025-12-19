@@ -5,7 +5,6 @@ Install qmk as per https://docs.qmk.fm/newbs
 
 `qmk setup -H ~/qmk_firmware -b wireless_playground skottmckay/qmk_firmware`
 
-
 This _should_ run `git submodule update --init --recursive` but can do so manually to be sure.
 
 MUST use the 'via' not 'default' keymap otherwise https://launcher.keychron.com/ won't work
@@ -14,11 +13,13 @@ MUST use the 'via' not 'default' keymap otherwise https://launcher.keychron.com/
 Build and copy for flashing on Windows using QMK toolkit
   ~/qmk_firmware> qmk compile -kb keychron/q6_max/ansi_encoder -km via && cp keychron_q6_max_ansi_encoder_via.bin /mnt/c/Users/me/somewhere
 
-Installed QMK toolbox via the instructions/links on https://launcher.keychron.com/#/firmware/flash to make sure it was compatible.
-Must run it as admin.
+e.g. `qmk compile -kb keychron/q6_max/ansi_encoder -km via && cp keychron_q6_max_ansi_encoder_via.bin /mnt/c/Users/Me/Firmeware`
 
-See readme.md in keyboards/keychron/q6_max
-Use `make` commands to build or 
+Installed QMK toolbox via the instructions/links on https://launcher.keychron.com/#/firmware/flash.
+Loaded keychron_q6_max_ansi_encoder_via.bin and flashed (hold Esc when plugging in).
+Unplug and replug once flashed.
+
+See also: keyboards/keychron/q6_max/readme.md
 
 NOTE:
 
@@ -36,4 +37,8 @@ If you want to change that colour you have to rebuild and reflash.
 See https://github.com/skottmckay/qmk_firmware/commit/61839521bf8bd899894d081fa5746d4618eea5de
 
 Updated timeout so LEDs turn off after 15 mins of activity in keyboards/keychron/q6_max/ansi_encoder/config.h
+Not sure if the change does anything though.
 #    define RGB_MATRIX_TIMEOUT (15 * 60 * 1000)
+
+Added macro to pin window (L WIN + L CTRL + L SHIFT + W) in keyboards/keychron/q6_max/ansi_encoder/keymaps/via/keymap.c and assigned to F16
+Assigned Media Prev/Play/Next to F13, 14, 15.
